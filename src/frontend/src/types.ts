@@ -13,4 +13,5 @@ export type TabType =
   | "contacts"
   | "helpline"
   | "fakecall"
-  | "pitchdeck";
+  | "pitchdeck"
+  | "privacy";

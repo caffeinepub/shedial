@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import {
   FileText,
   Home,
+  Lock,
   PhoneIncoming,
   Radio,
   Settings,
@@ -10,6 +11,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
+import { InstallBanner } from "./components/InstallBanner";
 import { SettingsModal } from "./components/SettingsModal";
 import { useSettings } from "./hooks/useSettings";
 import { ContactsTab } from "./pages/ContactsTab";
@@ -17,6 +19,7 @@ import { FakeCallTab } from "./pages/FakeCallTab";
 import { HelplineTab } from "./pages/HelplineTab";
 import { HomeTab } from "./pages/HomeTab";
 import { PitchDeckTab } from "./pages/PitchDeckTab";
+import { PrivacyPolicyTab } from "./pages/PrivacyPolicyTab";
 import type { TabType } from "./types";
 
 const TABS: { id: TabType; label: string; Icon: React.ElementType }[] = [
@@ -25,6 +28,7 @@ const TABS: { id: TabType; label: string; Icon: React.ElementType }[] = [
   { id: "helpline", label: "HELPLINE", Icon: Shield },
   { id: "fakecall", label: "FAKE CALL", Icon: PhoneIncoming },
   { id: "pitchdeck", label: "PITCH", Icon: FileText },
+  { id: "privacy", label: "PRIVACY", Icon: Lock },
 ];
 
 export default function App() {
@@ -38,6 +42,7 @@ export default function App() {
     helpline: "Helplines",
     fakecall: "Fake Call",
     pitchdeck: "Pitch Deck",
+    privacy: "Privacy Policy",
   };
 
   return (
@@ -99,13 +104,14 @@ export default function App() {
               {activeTab === "helpline" && <HelplineTab />}
               {activeTab === "fakecall" && <FakeCallTab />}
               {activeTab === "pitchdeck" && <PitchDeckTab />}
+              {activeTab === "privacy" && <PrivacyPolicyTab />}
             </motion.div>
           </AnimatePresence>
         </main>
 
         <nav
           data-ocid="home.tab"
-          className="nav-bar fixed bottom-0 left-0 right-0 flex justify-around items-center px-2 py-2 z-30"
+          className="nav-bar fixed bottom-0 left-0 right-0 flex justify-around items-center px-1 py-2 z-30"
           style={{ maxWidth: 430, marginLeft: "auto", marginRight: "auto" }}
         >
           {TABS.map(({ id, label, Icon }) => {
@@ -127,11 +133,11 @@ export default function App() {
                   />
                 )}
                 <Icon
-                  size={22}
+                  size={20}
                   className={isActive ? "text-red-500" : "text-white/35"}
                 />
                 <span
-                  className={`text-[10px] font-bold tracking-widest ${isActive ? "text-red-500" : "text-white/35"}`}
+                  className={`text-[9px] font-bold tracking-wider ${isActive ? "text-red-500" : "text-white/35"}`}
                 >
                   {label}
                 </span>
@@ -152,6 +158,8 @@ export default function App() {
             />
           )}
         </AnimatePresence>
+
+        <InstallBanner />
       </div>
 
       <Toaster />

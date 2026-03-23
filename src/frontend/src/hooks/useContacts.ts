@@ -3,12 +3,6 @@ import type { Contact } from "../types";
 
 const STORAGE_KEY = "shedial_contacts";
 
-const defaultContacts: Contact[] = [
-  { id: "1", name: "Mom", phone: "+91 98765 43210" },
-  { id: "2", name: "Best Friend Priya", phone: "+91 87654 32109" },
-  { id: "3", name: "Sister Neha", phone: "+91 76543 21098" },
-];
-
 function loadContacts(): Contact[] {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -16,8 +10,7 @@ function loadContacts(): Contact[] {
   } catch {
     // ignore
   }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultContacts));
-  return defaultContacts;
+  return [];
 }
 
 export function useContacts() {

@@ -1,4 +1,4 @@
-import { Edit2, Plus, Trash2, Users } from "lucide-react";
+import { Edit2, Plus, Trash2, UserPlus, Users } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { ContactModal } from "../components/ContactModal";
@@ -35,25 +35,46 @@ export function ContactsTab() {
         )}
       </AnimatePresence>
 
-      <div className="flex flex-col gap-4 px-4 pb-24">
+      <div className="flex flex-col gap-4 px-4 pb-28">
+        {/* Instruction banner */}
+        <div className="rounded-2xl bg-red-500/10 border border-red-500/20 px-4 py-3 flex items-start gap-3">
+          <div className="w-2 h-2 rounded-full bg-red-500 mt-1.5 flex-shrink-0" />
+          <p className="text-white/70 text-sm leading-relaxed">
+            Add real phone numbers of people you trust. These contacts will
+            receive your SOS message with your live GPS location.
+          </p>
+        </div>
+
         {contacts.length === 0 ? (
           <motion.div
             data-ocid="contacts.empty_state"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex flex-col items-center justify-center py-16 gap-4"
+            className="flex flex-col items-center justify-center py-12 gap-5"
           >
-            <div className="w-16 h-16 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center">
-              <Users size={28} className="text-red-400" />
+            <div className="w-20 h-20 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center">
+              <Users size={32} className="text-red-400" />
             </div>
             <div className="text-center">
-              <p className="text-white font-semibold text-base">
-                No contacts added yet
+              <p className="text-white font-semibold text-lg">
+                No contacts yet
               </p>
               <p className="text-white/40 text-sm mt-1">
-                Add your emergency contacts below
+                Tap the button below to add your first contact
               </p>
             </div>
+            <button
+              type="button"
+              data-ocid="contacts.add_first_button"
+              className="flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-red-500 text-white font-bold text-base active:scale-95 transition-transform shadow-lg"
+              onClick={() => {
+                setEditingContact(null);
+                setShowModal(true);
+              }}
+            >
+              <UserPlus size={20} />
+              Add Emergency Contact
+            </button>
           </motion.div>
         ) : (
           <motion.div
@@ -70,7 +91,9 @@ export function ContactsTab() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ delay: i * 0.05 }}
-                className={`flex items-center gap-4 px-4 py-4 ${i < contacts.length - 1 ? "border-b border-white/8" : ""}`}
+                className={`flex items-center gap-4 px-4 py-4 ${
+                  i < contacts.length - 1 ? "border-b border-white/8" : ""
+                }`}
               >
                 <div className="w-10 h-10 rounded-full bg-red-500/20 border border-red-500/30 flex items-center justify-center flex-shrink-0">
                   <span className="text-red-400 font-bold text-base">
@@ -107,24 +130,30 @@ export function ContactsTab() {
             ))}
           </motion.div>
         )}
-        <p className="text-white/30 text-xs text-center">
-          {contacts.length} emergency contact{contacts.length !== 1 ? "s" : ""}{" "}
-          saved
-        </p>
+
+        {contacts.length > 0 && (
+          <p className="text-white/30 text-xs text-center">
+            {contacts.length} emergency contact
+            {contacts.length !== 1 ? "s" : ""} saved
+          </p>
+        )}
       </div>
 
-      <button
-        type="button"
-        data-ocid="contacts.open_modal_button"
-        className="fixed bottom-24 right-4 w-14 h-14 rounded-full bg-red-500 shadow-red-glow flex items-center justify-center text-white active:scale-90 transition-transform z-40"
-        onClick={() => {
-          setEditingContact(null);
-          setShowModal(true);
-        }}
-        aria-label="Add contact"
-      >
-        <Plus size={26} />
-      </button>
+      {/* Floating add button -- only shown when contacts exist */}
+      {contacts.length > 0 && (
+        <button
+          type="button"
+          data-ocid="contacts.open_modal_button"
+          className="fixed bottom-24 right-4 w-14 h-14 rounded-full bg-red-500 shadow-red-glow flex items-center justify-center text-white active:scale-90 transition-transform z-40"
+          onClick={() => {
+            setEditingContact(null);
+            setShowModal(true);
+          }}
+          aria-label="Add contact"
+        >
+          <Plus size={26} />
+        </button>
+      )}
     </>
   );
 }
