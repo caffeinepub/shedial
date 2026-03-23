@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shedial-v1';
+const CACHE_NAME = 'shedial-v10';
 const STATIC_ASSETS = [
   '/',
   '/index.html'

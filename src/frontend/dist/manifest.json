@@ -11,13 +11,13 @@
   "categories": ["safety", "utilities"],
   "icons": [
     {
-      "src": "/assets/generated/shedial-icon.dim_512x512.png",
+      "src": "/assets/uploads/69CC64B5-5EEA-4F4F-BDDE-57C477FF47FB-1.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/generated/shedial-icon.dim_512x512.png",
+      "src": "/assets/uploads/69CC64B5-5EEA-4F4F-BDDE-57C477FF47FB-1.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
