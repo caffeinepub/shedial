@@ -104,6 +104,7 @@ export interface backendInterface {
     getContact(id: bigint): Promise<Contact>;
     getSettings(): Promise<Settings>;
     updateSettings(emergencyNumber: string): Promise<void>;
+    _initializeAccessControlWithSecret(secret: string): Promise<void>;
 }
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
@@ -204,6 +205,9 @@ export class Backend implements backendInterface {
             const result = await this.actor.updateSettings(arg0);
             return result;
         }
+    }
+    async _initializeAccessControlWithSecret(_secret: string): Promise<void> {
+        return;
     }
 }
 export interface CreateActorOptions {

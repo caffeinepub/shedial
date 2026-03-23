@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shedial-v10';
+const CACHE_NAME = 'serenemind-v1';
 const STATIC_ASSETS = [
   '/',
   '/index.html'
@@ -25,7 +25,6 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Network first, fall back to cache
   event.respondWith(
     fetch(event.request)
       .then((response) => {

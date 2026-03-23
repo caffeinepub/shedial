@@ -15,6 +15,7 @@ export interface Contact {
     phoneNumber: string;
 }
 export interface backendInterface {
+    _initializeAccessControlWithSecret(secret: string): Promise<void>;
     addContact(name: string, phoneNumber: string): Promise<bigint>;
     deleteContact(id: bigint): Promise<void>;
     editContact(id: bigint, name: string, phoneNumber: string): Promise<void>;
