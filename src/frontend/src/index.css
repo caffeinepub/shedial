@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    /* SheDial Dark Theme - always dark */
+    --background: 0.09 0.005 270;
+    --foreground: 0.98 0 0;
+    --card: 0.14 0.008 270;
+    --card-foreground: 0.98 0 0;
+    --popover: 0.12 0.006 270;
+    --popover-foreground: 0.98 0 0;
+    --primary: 0.57 0.22 25;
+    --primary-foreground: 0.98 0 0;
+    --secondary: 0.18 0.01 270;
+    --secondary-foreground: 0.98 0 0;
+    --muted: 0.17 0.008 270;
+    --muted-foreground: 0.68 0.015 270;
+    --accent: 0.2 0.01 270;
+    --accent-foreground: 0.98 0 0;
+    --destructive: 0.57 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.22 0.008 270;
+    --input: 0.2 0.01 270;
+    --ring: 0.57 0.22 25;
+    --chart-1: 0.57 0.22 25;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.12 0.006 270;
+    --sidebar-foreground: 0.98 0 0;
+    --sidebar-primary: 0.57 0.22 25;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.18 0.01 270;
+    --sidebar-accent-foreground: 0.98 0 0;
+    --sidebar-border: 0.22 0.008 270;
+    --sidebar-ring: 0.57 0.22 25;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    overscroll-behavior: none;
+  }
+}
+
+@layer utilities {
+  .sos-glow {
+    box-shadow: 0 0 60px rgba(255, 59, 48, 0.35), 0 0 120px
+      rgba(255, 59, 48, 0.15), 0 0 200px rgba(255, 59, 48, 0.08);
+  }
+
+  .sos-glow-active {
+    box-shadow: 0 0 80px rgba(255, 59, 48, 0.6), 0 0 160px
+      rgba(255, 59, 48, 0.3), 0 0 240px rgba(255, 59, 48, 0.15);
+  }
+
+  .card-surface {
+    background: oklch(var(--card));
+    border: 1px solid oklch(var(--border));
+    border-radius: 1rem;
+  }
+
+  .nav-bar {
+    background: oklch(0.1 0.005 270 / 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid oklch(var(--border));
+  }
+
+  .progress-ring {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+
+  .pulse-ring {
+    animation: pulse-ring 1.5s ease-out infinite;
+  }
+
+  .pulse-ring-2 {
+    animation: pulse-ring 1.5s ease-out 0.5s infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+
+  @keyframes siren-flash {
+    0%,
+    100% {
+      background: oklch(0.09 0.005 270);
+    }
+    50% {
+      background: oklch(0.25 0.12 25);
+    }
+  }
+
+  .siren-active {
+    animation: siren-flash 0.5s ease-in-out infinite;
+  }
+
+  @keyframes incoming-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.08);
+      opacity: 0.85;
+    }
+  }
+
+  .incoming-pulse {
+    animation: incoming-pulse 1s ease-in-out infinite;
+  }
+
+  @keyframes ring-expand {
+    0% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+  .ring-expand {
+    animation: ring-expand 1.5s ease-out infinite;
+  }
+
+  .ring-expand-2 {
+    animation: ring-expand 1.5s ease-out 0.5s infinite;
+  }
+
+  .ring-expand-3 {
+    animation: ring-expand 1.5s ease-out 1s infinite;
+  }
+}
