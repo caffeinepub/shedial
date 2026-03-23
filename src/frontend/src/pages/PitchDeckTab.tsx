@@ -126,9 +126,7 @@ export function PitchDeckTab() {
             <p className="text-white/40 text-xs tracking-widest uppercase">
               Founded by
             </p>
-            <p className="text-white/80 text-base mt-1">
-              <em>Founder Name</em>
-            </p>
+            <p className="text-white/80 text-base mt-1">Dr Muskan Khosla</p>
           </div>
         </div>
 
@@ -529,13 +527,9 @@ export function PitchDeckTab() {
             </p>
             <div className="w-12 h-px bg-red-500/40 mb-8" />
             <div className="space-y-2 text-white/50 text-sm">
-              <p>
-                📧 <em>your.email@example.com</em>
-              </p>
+              <p>📧 muskankhosla001@gmail.com</p>
               <p>🌐 SheDial — Women's Safety App</p>
-              <p>
-                👤 Founded by <em>Founder Name</em>
-              </p>
+              <p>👤 Founded by Dr Muskan Khosla</p>
             </div>
           </div>
         </div>
