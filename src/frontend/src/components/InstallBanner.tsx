@@ -14,11 +14,9 @@ export function InstallBanner() {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    // Check if already installed
     if (window.matchMedia("(display-mode: standalone)").matches) return;
     if (sessionStorage.getItem("install-dismissed")) return;
 
-    // Detect iOS
     const ios =
       /iphone|ipad|ipod/i.test(navigator.userAgent) &&
       !(navigator as unknown as { standalone?: boolean }).standalone;
@@ -30,7 +28,10 @@ export function InstallBanner() {
 
     const handler = (e: Event) => {
       e.preventDefault();
-      setDeferredPrompt(e as BeforeInstallPromptEvent);
+      const prompt = e as BeforeInstallPromptEvent;
+      setDeferredPrompt(prompt);
+      // Store globally so InstallTab can also use it
+      window.deferredInstallPrompt = prompt;
       setTimeout(() => setShowBanner(true), 3000);
     };
 
@@ -65,15 +66,18 @@ export function InstallBanner() {
       <div
         className="w-full rounded-2xl px-4 py-3 flex items-center gap-3 shadow-2xl"
         style={{
-          background: "oklch(0.16 0.02 25)",
-          border: "1px solid oklch(0.3 0.08 25 / 0.6)",
+          background: "oklch(0.16 0.03 290)",
+          border: "1px solid oklch(0.35 0.1 290 / 0.6)",
         }}
       >
-        <div className="w-10 h-10 rounded-xl bg-red-500 flex items-center justify-center flex-shrink-0">
+        <div
+          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+          style={{ background: "oklch(0.55 0.18 290)" }}
+        >
           <Download size={20} className="text-white" />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-white font-bold text-sm">Install SheDial</p>
+          <p className="text-white font-bold text-sm">Install SereneMind</p>
           {isIOS ? (
             <p className="text-white/50 text-xs mt-0.5">
               Tap <strong className="text-white/70">Share</strong> then{" "}
@@ -89,7 +93,8 @@ export function InstallBanner() {
           <button
             type="button"
             onClick={handleInstall}
-            className="px-3 py-1.5 rounded-lg bg-red-500 text-white text-xs font-bold flex-shrink-0"
+            className="px-3 py-1.5 rounded-lg text-white text-xs font-bold flex-shrink-0"
+            style={{ background: "oklch(0.55 0.18 290)" }}
           >
             Install
           </button>
@@ -105,4 +110,10 @@ export function InstallBanner() {
       </div>
     </div>
   );
+}
+
+declare global {
+  interface Window {
+    deferredInstallPrompt?: BeforeInstallPromptEvent;
+  }
 }

@@ -11,13 +11,13 @@
   "categories": ["health", "wellness", "lifestyle"],
   "icons": [
     {
-      "src": "/assets/generated/serenemind-icon-transparent.dim_512x512.png",
+      "src": "/assets/generated/serenemind-icon.dim_512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/generated/serenemind-icon-transparent.dim_512x512.png",
+      "src": "/assets/generated/serenemind-icon.dim_512x512.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"

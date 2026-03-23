@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import {
   BookOpen,
+  Download,
   Home,
   Leaf,
   MessageCircle,
@@ -11,10 +12,12 @@ import {
   UserCircle,
 } from "lucide-react";
 import { useState } from "react";
+import { InstallBanner } from "./components/InstallBanner";
 import { AudioProvider } from "./context/AudioContext";
 import ChatTab from "./pages/serenemind/ChatTab";
 import ExercisesTab from "./pages/serenemind/ExercisesTab";
 import HomeTab from "./pages/serenemind/HomeTab";
+import InstallTab from "./pages/serenemind/InstallTab";
 import JournalTab from "./pages/serenemind/JournalTab";
 import MoodTab from "./pages/serenemind/MoodTab";
 import MusicTab from "./pages/serenemind/MusicTab";
@@ -29,6 +32,7 @@ type TabId =
   | "music"
   | "mood"
   | "journal"
+  | "install"
   | "pitch"
   | "privacy"
   | "signup";
@@ -40,6 +44,7 @@ const tabs: { id: TabId; label: string; icon: React.ReactNode }[] = [
   { id: "music", label: "Music", icon: <Music size={20} /> },
   { id: "mood", label: "Mood", icon: <SmilePlus size={20} /> },
   { id: "journal", label: "Journal", icon: <BookOpen size={20} /> },
+  { id: "install", label: "Install", icon: <Download size={20} /> },
   { id: "pitch", label: "Pitch", icon: <Presentation size={20} /> },
   { id: "privacy", label: "Privacy", icon: <Shield size={20} /> },
   { id: "signup", label: "Account", icon: <UserCircle size={20} /> },
@@ -70,6 +75,9 @@ export default function App() {
             </div>
             <div className={activeTab === "journal" ? "block" : "hidden"}>
               <JournalTab />
+            </div>
+            <div className={activeTab === "install" ? "block" : "hidden"}>
+              <InstallTab />
             </div>
             <div className={activeTab === "pitch" ? "block" : "hidden"}>
               <PitchTab />
@@ -117,6 +125,7 @@ export default function App() {
               ))}
             </div>
           </nav>
+          <InstallBanner />
         </div>
       </div>
       <Toaster />
